@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tw.group4._03_.cms.shop.model.CreativeShopBean;
 import tw.group4._03_.cms.shop.model.CreativeShopService;
 import tw.group4._03_.cms.util.CustomizedTypeConversion;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class UpdateShop {
@@ -41,7 +42,7 @@ public class UpdateShop {
 			String acShopsSerachMsg = "查無此商店編號";
 			m.addAttribute("acShopsSerachMsg", acShopsSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_shop/update_confirm";
+		return IdentityFilter.loginID+"03/cms_shop/update_confirm";
 		
 	}
 	
@@ -86,7 +87,7 @@ public class UpdateShop {
 			String acShopsUpdateMsg = "商店資料更新失敗";
 			m.addAttribute("acShopsUpdateMsg", acShopsUpdateMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_shop/update_return";
+		return IdentityFilter.loginID+"03/cms_shop/update_return";
 	}
 
 

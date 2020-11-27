@@ -1,5 +1,7 @@
 package tw.group4._04_.front.seat.model;
 
+import java.util.Map;
+
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,15 +18,15 @@ public class SeatBeanService {
 		this.seatBeanDAO = seatBeanDAO;
 	}
 
-	// 新增
-	public SeatBean insert(SeatBean SeatBean) {
-		return seatBeanDAO.insert(SeatBean);
-	}
-
-//	// 查詢
-//	public SeatBean select(int actno) {
-//		return seatBeanDAO.select(actno);
+//	// 新增
+//	public SeatBean insert(SeatBean SeatBean) {
+//		return seatBeanDAO.insert(SeatBean);
 //	}
+
+	// 查詢
+	public Map<String, Integer> select(int actno) {
+		return seatBeanDAO.select(actno);
+	}
 
 	// 修改
 	public SeatBean update(int actno ) {

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="container">
@@ -38,19 +39,25 @@
 						<td><input type="hidden" name="shopId" value="${shopId}">${shopId}</td>
 						<td style="width: 200px;"></td>
 					</tr>
-					<tr style="display: none">
+					<tr>
 						<td>商店名稱:</td>
 						<td><input type="hidden" name="shopName" value="${shopName}">${shopName}</td>
 						<td></td>
 					</tr>
+					<tr>
+						<td>商店簡介:</td>
+						<td><input type="hidden" name="shopName" value="${intro}">${intro}</td>
+						<td></td>
+					</tr>
 				</tbody>
 			</table>
+			<br>
 			<!-- ====================================================== -->
 			<table>
 				<thead></thead>
 				<tbody>
 					<tr>
-						<td>預約日期*:</td>
+						<td>預約日期:</td>
 						<td><input type="date" name="dateTime" id="dateTime"
 							value="2020-12-25" min="2020-12-25" max="2020-1-24"
 							required="required"></td>

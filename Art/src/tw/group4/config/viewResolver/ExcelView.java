@@ -16,8 +16,6 @@ import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
-import tw.group4.model.HouseBean;
-
 public class ExcelView extends AbstractXlsxView {
 
 	@Override
@@ -25,7 +23,7 @@ public class ExcelView extends AbstractXlsxView {
 			Workbook workbook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		HouseBean hBean = (HouseBean) model.get("houseBean");
+//		HouseBean hBean = (HouseBean) model.get("houseBean");
 
 		Sheet sheet = workbook.createSheet("sheet 1");
 		CellStyle style = workbook.createCellStyle();
@@ -52,8 +50,8 @@ public class ExcelView extends AbstractXlsxView {
 		// Create data cells
 		row = sheet.createRow(rowCount++);
 		colCount = 0;
-		row.createCell(colCount++).setCellValue(hBean.getHouseid());
-		row.createCell(colCount++).setCellValue(hBean.getHousename());
+//		row.createCell(colCount++).setCellValue(hBean.getHouseid());
+//		row.createCell(colCount++).setCellValue(hBean.getHousename());
 
 		for (int i = 0; i < 2; i++)
 			sheet.autoSizeColumn(i, true);

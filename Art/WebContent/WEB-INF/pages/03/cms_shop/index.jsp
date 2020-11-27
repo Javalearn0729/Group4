@@ -16,16 +16,16 @@
 		</form>
 	</div>
 	<br>
-	<div class=content>
-		<form method="post"
-			action="<c:url value="/03/cms/shop/createConfirm.ctrl"/>">
-			<div class="submitButton">
-				<input type="submit" name="submit" value="上架新商店">
-			</div>
-			<br>
-		</form>
-	</div>
-	<br>
+<!-- 	<div class=content> -->
+<!-- 		<form method="post" -->
+<%-- 			action="<c:url value="/03/cms/shop/createConfirm.ctrl"/>"> --%>
+<!-- 			<div class="submitButton"> -->
+<!-- 				<input type="submit" name="submit" value="上架新商店"> -->
+<!-- 			</div> -->
+<!-- 			<br> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
+<!-- 	<br> -->
 	<div class=content>
 		<form method="post"
 			action="<c:url value="/03/cms/shop/searchShopByShopName.ctrl"/>">

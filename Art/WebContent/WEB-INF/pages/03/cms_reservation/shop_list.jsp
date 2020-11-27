@@ -5,7 +5,7 @@
 <div class="container">
 	<br>
 	<div class=title>
-		<h3 align="center" style="margin-top: 20px;">新增藝文商店預約</h3>
+		<h3 align="center" style="margin-top: 20px;">新增商店預約</h3>
 	</div>
 	<div class="back" align="right">
 		<form action="<c:url value='/03/cms/reservation/index'/> "
@@ -37,22 +37,20 @@
 						<tr>
 							<td>${acShopsList.shopId}</td>
 							<td>${acShopsList.shopName}</td>
-							<td>${acShopsList.intro}</td>
 							<td>${acShopsList.address}</td>
 							<td>${acShopsList.phone}</td>
-							<!-- 	======================= -->
 							<td>${acShopsList.email}</td>
+							<!-- 	======================= -->
 							<td>
 								<form method="post"
 									action="<c:url value="/03/cms/reservation/createReservationDate.ctrl"/>">
 									<button name="reserveButton" type="submit">預約</button>
-									<!-- 	### CMR Calendar、Reservation -->
-									<!-- 	會在index補上一個依電話取得memberId、memberName 的PAGE -->
-									<!-- 	<Input type="hidden" name="memberId" value="">  -->
-									<!-- 	<Input type="hidden" name="memberName" value="">  -->
-									<Input type="hidden" name="shopId"
-										value="${acShopsList.shopId}"> <Input type="hidden"
-										name="shopName" value="${acShopsList.shopName}">
+									<!-- 	會在index補上一個從會員名取得memberId、memberName 的PAGE -->
+									<Input type="hidden" name="memberId" value="${memberId}"> 
+									<Input type="hidden" name="memberName" value="${memberName}"> 
+									<Input type="hidden" name="shopId" value="${acShopsList.shopId}"> 
+									<Input type="hidden" name="shopName" value="${acShopsList.shopName}">
+									<Input type="hidden" name="intro" value="${acShopsList.intro}">
 								</form>
 							</td>
 						</tr>

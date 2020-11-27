@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.group4._03_.cms.reservation.model.ShopReservationBean;
 import tw.group4._03_.cms.reservation.model.ShopReservationService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class DeleteReservation {
@@ -25,18 +26,18 @@ public class DeleteReservation {
 			int no = Integer.parseInt(reservationNo);
 			srs.delete(no);
 
-			String reservationDeleteMsg = "商店資料刪除成功";
+			String reservationDeleteMsg = "預約刪除成功";
 			m.addAttribute("reservationDeleteMsg", reservationDeleteMsg);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			String reservationDeleteMsg = "商店資料刪除失敗";
+			String reservationDeleteMsg = "預約刪除失敗";
 			m.addAttribute("reservationDeleteMsg", reservationDeleteMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_reservation/delete_return";
+		return IdentityFilter.loginID+"03/cms_reservation/delete_return";
 	}
 
-	@RequestMapping(path = "/03/cms/shop/deleteReservationByNo.ctrl", method = RequestMethod.POST)
+	@RequestMapping(path = "/03/cms/reservation/deleteReservationByNo.ctrl", method = RequestMethod.POST)
 	public String deleteReservationByNo(@RequestParam(name = "reservationNo") String reservationNo, Model m) {
 
 		try {
@@ -56,7 +57,7 @@ public class DeleteReservation {
 			String reservationSerachMsg = "搜尋出錯，請重新查詢";
 			m.addAttribute("reservationSerachMsg", reservationSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_shop/delete_confirm";
+		return IdentityFilter.loginID+"03/cms_reservation/delete_confirm";
 	}
 
 	@RequestMapping(path = "/03/cms/reservation/deleteReservationByMemberName.ctrl", method = RequestMethod.POST)
@@ -77,7 +78,7 @@ public class DeleteReservation {
 			String reservationSerachMsg = "搜尋出錯，請重新查詢";
 			m.addAttribute("reservationSerachMsg", reservationSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_reservation/delete_confirm";
+		return IdentityFilter.loginID+"03/cms_reservation/delete_confirm";
 	}
 
 	@RequestMapping(path = "/03/cms/reservation/deleteReservationByShopName.ctrl", method = RequestMethod.POST)
@@ -98,7 +99,7 @@ public class DeleteReservation {
 			String reservationSerachMsg = "搜尋出錯，請重新查詢";
 			m.addAttribute("reservationSerachMsg", reservationSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_reservation/delete_confirm";
+		return IdentityFilter.loginID+"03/cms_reservation/delete_confirm";
 	}
 
 	

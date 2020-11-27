@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
 	<!-- 下面這句宣告general annotations -->
 	<!-- <context:annotation-config /> -->
 	<!-- java設定檔的@ComponentScan(basePackages = "tw.group4" )等同下方，宣告Spring MVC相關annotations -->
@@ -68,7 +69,7 @@
 	<!-- <mvc:resources location="/WEB-INF/pages/backstyle/js/" -->
 	<!-- mapping="/js/**" /> -->
 
-	<!-- 設定網址路徑的特定映射位置，目前失效，有需求可在Java Config設定 -->
+	<!-- 設定網址路徑的特定映射位置，目前未設定，有需求可在Java Config設定 -->
 	<!-- <mvc:view-controller path="/myformPage" -->
 	<!-- view-name="redirect:myformPage.controller" /> -->
 

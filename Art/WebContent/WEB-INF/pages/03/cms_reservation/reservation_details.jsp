@@ -5,7 +5,7 @@
 <div class="container">
 	<br>
 	<div class=title>
-		<h3 align="center" style="margin-top: 20px;">預約詳細資訊</h3>
+		<h3 align="center" style="margin-top: 20px;">預約資訊</h3>
 	</div>
 	<div class="back" align="right">
 		<form action="<c:url value='/03/cms/reservation/index'/> "

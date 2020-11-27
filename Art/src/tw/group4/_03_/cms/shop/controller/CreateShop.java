@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tw.group4._03_.cms.shop.model.CreativeShopBean;
 import tw.group4._03_.cms.shop.model.CreativeShopService;
 import tw.group4._03_.cms.util.CustomizedTypeConversion;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class CreateShop {
@@ -19,7 +20,7 @@ public class CreateShop {
 
 	@RequestMapping(path = "/03/cms/shop/createConfirm.ctrl", method = RequestMethod.GET)
 	public String createConfirm() {
-		return "03/cms_shop/create_confirm";
+		return IdentityFilter.loginID+"03/cms_shop/create_confirm";
 	}
 	
 	@RequestMapping(path = "/03/cms/shop/createShop.ctrl", method = RequestMethod.POST)
@@ -76,6 +77,6 @@ public class CreateShop {
 			String acShopsCreateMsg = "商店資料新建失敗";
 			m.addAttribute("acShopsCreateMsg", acShopsCreateMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_shop/create_return";
+		return IdentityFilter.loginID+"03/cms_shop/create_return";
 	}
 }

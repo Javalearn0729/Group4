@@ -48,6 +48,11 @@ public class CreativeShopService implements ICreativeShopService {
 	}
 	
 	@Override
+	public List<CreativeShopBean> selectByShopNameAndMemberId(String shopName, int memberId){
+		return creativeShopDAO.selectByShopNameAndMemberId(shopName, memberId);
+	}
+	
+	@Override
 	public List<CreativeShopBean> selectAll() {
 		return creativeShopDAO.selectAll();
 	}
@@ -58,8 +63,18 @@ public class CreativeShopService implements ICreativeShopService {
 	}
 	
 	@Override
+	public List<CreativeShopBean> selectByMemberIdAndReservation(int memberId){
+		return creativeShopDAO.selectByMemberIdAndReservation(memberId);
+	}
+	
+	@Override
 	public List<CreativeShopBean> selectByShopNameAndReservation(String shopName){
 		return creativeShopDAO.selectByShopNameAndReservation(shopName);
+	}
+	
+	@Override
+	public List<CreativeShopBean> selectByShopNameAndMemberIdAndReservation(String shopName, int memberId){
+		return creativeShopDAO.selectByShopNameAndMemberIdAndReservation(shopName, memberId);
 	}
 
 	@Override

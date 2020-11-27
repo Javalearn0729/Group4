@@ -8,6 +8,7 @@ import java.io.InputStream;
 import java.sql.Blob;
 import java.util.List;
 
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -63,31 +64,45 @@ public class ShowBeanDAO {
 	}
 
 	// 查詢多筆
-	public List<ShowBean> selectAll() {
+	public List<ShowBean2> selectAll() {
 		// "From ShowBean"為createQuery
 		//
 		Session session = sessionFacory.getCurrentSession();
-		Query<ShowBean> query = session.createQuery("From ShowBean SB ORDER BY SB.ACT_NO", ShowBean.class);
-		List<ShowBean> list = query.list();
+		Query<ShowBean2> query = session.createQuery("From ShowBean2 SB2 ORDER BY SB2.ACT_NO", ShowBean2.class);
+		List<ShowBean2> list = query.list();
 		return list;
 	}
 	
 	// 查詢多筆 開始日期排序
-		public List<ShowBean> selectAll_startdate() {
+		public List<ShowBean2> selectAll_startdate() {
 			// "From ShowBean"為createQuery
 			//
 			Session session = sessionFacory.getCurrentSession();
-			Query<ShowBean> query = session.createQuery("From ShowBean SB ORDER BY SB.ACT_STARTDATE", ShowBean.class);
-			List<ShowBean> list = query.list();
+			Query<ShowBean2> query = session.createQuery("From ShowBean2 SB2 ORDER BY SB2.ACT_STARTDATE", ShowBean2.class);
+//			Query<ShowBean> query = session.createQuery("SELECT NEW ShowBean( aCT_NO,  aCT_TITLE,  aCT_CATEGORY, aCT_LOCATION, aCT_LOCATION_NAME,aCT_ON_SALES, aCT_PRICE,  aCT_TIME,  aCT_ENDTIME,  aCT_MAINUNIT,aCT_SHOWUNIT, aCT_COMMENT,  aCT_DESCRIPTION, aCT_IMAGE,aCT_STARTDATE,aCT_ENDDATE )FROM ShowBean ORDER BY SB.ACT_STARTDATE", ShowBean.class);
+			List<ShowBean2> list = query.list();
 			return list;
 		}
+		
+		// 查詢分類  開始日期排序
+				public List<ShowBean2> selectAll_category(int category) {
+					// "From ShowBean"為createQuery
+					//
+					Session session = sessionFacory.getCurrentSession();
+					Query<ShowBean2> query = session.createQuery("From ShowBean2 SB2 where SB2.ACT_CATEGORY="+category+"ORDER BY SB2.ACT_STARTDATE", ShowBean2.class);
+					List<ShowBean2> list = query.list();
+					return list;
+				}
+		
+		
+		
 		// 查詢多筆 結束日期排序
-		public List<ShowBean> selectAll_enddate() {
+		public List<ShowBean2> selectAll_enddate() {
 			// "From ShowBean"為createQuery
 			//
 			Session session = sessionFacory.getCurrentSession();
-			Query<ShowBean> query = session.createQuery("From ShowBean SB ORDER BY SB.ACT_ENDDATE", ShowBean.class);
-			List<ShowBean> list = query.list();
+			Query<ShowBean2> query = session.createQuery("From ShowBean2 SB2 ORDER BY SB2.ACT_ENDDATE", ShowBean2.class);
+			List<ShowBean2> list = query.list();
 			return list;
 		}
 
@@ -204,10 +219,10 @@ public class ShowBeanDAO {
 
 	// 模糊查詢
 	// find內預設傳入String searchString參數
-	public List<ShowBean> find(String searchString) {
+	public List<ShowBean2> find(String searchString) {
 
 		Session session = sessionFacory.getCurrentSession();
-		String queryString = "from ShowBean where ACT_TITLE like'%" + searchString + "%'";
+		String queryString = "from ShowBean2 where ACT_TITLE like'%" + searchString + "%'";
 		Query queryObject = session.createQuery(queryString);
 
 		return queryObject.list();

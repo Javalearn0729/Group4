@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.group4._03_.cms.shop.model.CreativeShopService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class DeleteShop {
@@ -30,7 +31,7 @@ public class DeleteShop {
 			String acShopsDeleteMsg = "商店資料刪除失敗";
 			m.addAttribute("acShopsDeleteMsg", acShopsDeleteMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_shop/delete_return";
+		return IdentityFilter.loginID+"03/cms_shop/delete_return";
 	}
 
 //	@RequestMapping(path = "/03/cms/shop/deleteShopByShopId.ctrl", method = RequestMethod.POST)

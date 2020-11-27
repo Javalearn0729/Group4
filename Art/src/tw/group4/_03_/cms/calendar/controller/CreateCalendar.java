@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import tw.group4._03_.cms.calendar.model.ShopCalendarBean;
 import tw.group4._03_.cms.calendar.model.ShopCalendarService;
 import tw.group4._03_.cms.util.GetDate;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class CreateCalendar {
@@ -50,7 +51,7 @@ public class CreateCalendar {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "03/cms_calendar/create_confirm";
+		return IdentityFilter.loginID+"03/cms_calendar/create_confirm";
 	}
 
 	@RequestMapping(path = "/03/cms/calendar/createCalendar.ctrl", method = RequestMethod.POST)
@@ -110,7 +111,7 @@ public class CreateCalendar {
 			String calendarCreateMsg = "預約行事曆新增失敗，請重新輸入";
 			m.addAttribute("calendarCreateMsg", calendarCreateMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_calendar/create_return";
+		return IdentityFilter.loginID+"03/cms_calendar/create_return";
 	}
 
 }

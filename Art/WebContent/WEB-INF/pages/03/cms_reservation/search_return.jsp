@@ -27,7 +27,7 @@
 					<th scope="col">預約日期</th>
 					<th scope="col">商店名稱</th>
 					<!-- ===================== -->
-					<th scope="col">顧客姓名</th>
+					<th scope="col">預約人姓名</th>
 					<th scope="col">人數</th>
 					<th scope="col">詳細資訊</th>
 					<th scope="col">修改</th>

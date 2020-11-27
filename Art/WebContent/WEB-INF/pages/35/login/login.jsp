@@ -1,117 +1,169 @@
-﻿<%--
-	執行本網頁之前，會先執行_02_login.filter.FindUserPassword.java這個過濾器。執行過濾器目的
-	在檢視請求物件是否含有帳號與密碼等資料。
-	  
-        本網頁 login.jsp 提供登入的畫面，讓使用者輸入帳號與密碼。輸入完畢後，按下Submit按鈕，瀏覽器
-        會帳號與密碼給  <Form>標籤action屬性對應的程式: _02_login.controller.LoginServlet.java，
-        由該Servlet來檢查帳號與密碼是否正確。
-            
---%>
-<!DOCTYPE HTML>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <meta charset="UTF-8">
-<title>管理員登入</title>
-<style type="text/css">
-#main {
-	position:relative;
-	top: 50px;
-    width:100%;
-    text-align:center;
-}
-#content {
-  width: 500px ;
-  margin-left: auto ;
-  margin-right: auto ;
-}
-</style>
-<script type="text/javascript">
-//由<body>的onLoad事件處理函數觸發此函數
-function setFocusToUserId(){   
-	 document.forms[0].userId.focus();   // 將游標放在userId欄位內
-}
-</script>
+<title>登入</title>
 </head>
-<body onLoad="setFocusToUserId()" style="background:#FFFFFF;">
-<!-- 下列敘述設定變數funcName的值為LOG，top.jsp 會用到此變數 -->
-<c:set var="funcName" value="LOG" scope="session"/>
-<c:set var="msg" value="登入" />
-<c:if test="${ ! empty sessionScope.timeOut }" > <!-- 表示使用逾時，重新登入 -->
-   <c:set var="msg" value="<font color='red'>${sessionScope.timeOut}</font>" />
-</c:if>
-<!-- 引入共同的頁首 -->
+<style>
+tr {
+	text-align: left;
+}
 
-<Form action="<c:url value='login.do' />" method="POST" name="loginForm">
-  <div id='content'>
-    <Table  style="border-width:2; background:#F5F1E3; width: 500px;">
-         <TR>
-             <TH width="180">&nbsp;</TH>
-             <TH width="180">&nbsp;</TH>
-         </TR>
-         <TR>
-             <TD colspan='2' align="CENTER" style="font-size:0.6cm;font-weight: 300;"> 
-                <Font color="#006600">
-                    ${AppName}
-                </Font>
-             </TD>
-         </TR>
-         <TR>
-             <TD height='50' colspan='2' align="CENTER" style="font-size:0.5cm;font-weight: 300;"> 
-                <h2 color="navy">
-                    ${msg}
-                </h2>
-             </TD>
-         </TR>
-         <TR height='10'>
-             <TD align="CENTER" colspan='2'>&nbsp;</TD>
-         </TR>
-         <TR>
-             <TD width="180" align="right">帳號：　</TD>
-             <TD width="180" colspan='2' align="LEFT">
-             <input  type="text" name="userId" size="10" 
-             value="${requestScope.user}${param.userId}">
-             &nbsp;<small><Font color='red' size="-3">${ErrorMsgKey.AccountEmptyError}
-             </Font></small></TD>
-         </TR>
-         <TR>
-             <TD width="180" align="right">密碼：　</TD>
-             <TD width="180" colspan='2' align="LEFT" >
-             <input  type="password" name="pswd"  size="10" 
-             value="${requestScope.password}${param.pswd}">
-              
-             &nbsp;<small><Font color='red'  size="-3">${ErrorMsgKey.PasswordEmptyError}
-             </Font></small></TD>
-             
-         </TR>  
-         <tr>
-         <TD width="180" align="right" >
-             <input type="checkbox" name="rememberMe" 
-               <c:if test='${requestScope.rememberMe==true}'>
-                           
-                  checked='checked'
-               </c:if> 
-             value="true">
-         </TD>
-         <TD width="180"  colspan='2' align="left"><small>記住密碼</small></TD>
-         </tr>
-         <TR height='10'>
-             <TD align="CENTER" colspan='2'>&nbsp;<Font color='red' size="-1">
-             ${ErrorMsgKey.LoginError}&nbsp;</Font></TD>
-         </TR>
-        <TR>
-            <TD colspan="2" align="center"><input type="submit" value="確認登入"> </TD>
-         </TR>
-         <TR height='10'>
-             <TD align="CENTER" colspan='2'>&nbsp;</TD>
-         </TR>
-    </Table>
-  </div>
-</Form>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+.authError, .errors {
+	color: red;
+	padding: 10px;
+}
+
+fieldset {
+	text-align: center;
+	width: 400px;
+	margin: 0 auto;
+}
+
+#sendData, .pass {
+	display: none;
+}
+.pass {
+	color: red;
+}
+/* .grecaptcha-badge { 
+    display: none;
+} */
+</style>
+<body>
+	<!-- start banner Area -->
+	<section class="banner-area relative" id="home">
+		<div class="overlay overlay-bg"></div>
+		<div class="container">
+			<div class="row d-flex align-items-center justify-content-center">
+				<div class="about-content col-lg-12">
+					<h1 class="text-white">Login</h1>
+					<p class="text-white link-nav">
+						<a href="index.html">Home </a> <span class="lnr lnr-arrow-right"></span>
+						<a href="elements.html"> Login</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End banner Area -->
+	<br>
+	<br>
+	<fieldset>
+		<legend>請輸入帳號密碼</legend>
+		<c:url var="url" value='/35/loginCheck.ctrl' />
+		<form:form action="${url}" method="POST" modelAttribute="member">
+			<table class="loginForm">
+				<tr>
+					<td colspan=2 class="authError">${authError}</td>
+				</tr>
+				<tr>
+					<td><form:label path="name">會員名稱:</form:label></td>
+					<td><form:input path="name" value="${name}" /></td>
+					<td class="errors">${errors.user}</td>
+				</tr>
+				<tr>
+					<td><form:label path="password">密碼:</form:label></td>
+					<td><form:input type="password" path="password"
+							value="${password}" /></td>
+					<td class="errors">${errors.pwd}</td>
+				</tr>
+				<tr>
+					<td><label>記住密碼:</label></td>
+					<td><input type="checkbox" name="rememberMe"
+						<c:if test='${requestScope.rememberMe==true}'>
+					    checked='checked'
+              			</c:if>
+						value="yes" /></td>
+				</tr>
+				<!-- 				<tr> -->
+				<!-- 					<td colspan="2"> -->
+				<!-- 						<button class='captcha'>點我進行驗證</button> -->
+				<!-- 					</td> -->
+				<!-- 				</tr> -->
+				<tr>
+					<td style="padding-top: 20px;"><form:button value="Send"
+							id='sendData'>真的登入按鈕</form:button></td>
+				</tr>
+				<tr>
+					<td colspan=2 style="padding-top: 20px;"><p class="pass">驗證通過，您不是機器人<br>3秒後自動登入</p></td>
+				</tr>
+			</table>
+		</form:form>
+		<button class='captcha'>登入</button>
+	</fieldset>
+	<div class="newImg"></div>
+
+	<script
+		src="https://www.google.com/recaptcha/api.js?render=6Lc_wOQZAAAAALKDlGGuMLE_iV-rjKJIYMHI9Fj6"></script>
+	<script type="text/javascript">
+		const CAPTCHA_CLIENT_SECRET = "6Lc_wOQZAAAAALKDlGGuMLE_iV-rjKJIYMHI9Fj6";
+		window.onload = () => {
+
+			// unsplash 上的圖片
+			let url = 'https://images.unsplash.com/photo-1513313778780-9ae4807465f0?auto=format&fit=crop&w=634&q=80'
+			fetch(url)
+			  .then((response) => {
+			    return response.blob();
+			  })
+			  .then((imageBlob) => {
+				console.log(imageBlob);
+			    let img = document.createElement('IMG')
+			    document.querySelector('.newImg').appendChild(img);
+			    // 將 blog 物件轉為 url
+			    img.src = URL.createObjectURL(imageBlob);
+			  })
+			
+			document.querySelector('.captcha').addEventListener('click', () => {
+						
+				grecaptcha.execute(CAPTCHA_CLIENT_SECRET, {action: 'login'}).then(function(token) {
+					console.log('客戶端token:' + token);
+					fetch("<c:url value='/35/validate?token=' />" + token, {
+						method: 'GET'
+					}).then(response => {
+						if (response.ok){
+							response.json().then(message => {
+								console.log('伺服器端驗證');
+								console.log(message);
+								console.log(message.score);
+// 								返回的message是JSONObject型態
+// 								取Key對應value用message.score或message["score"]
+//                              JSONObject.key，可以抓出key的value
+								if (message.score >= 0.8){
+									console.log("產出登入按鈕");
+									let pass = document.querySelector('.pass');
+									pass.style.display = "block";
+
+									let delayInMilliseconds = 1000; //3 second
+									setTimeout(() => {
+										 // code to be executed after 1 second
+										pass.innerHTML="驗證通過，您不是機器人<br>2秒後自動登入";
+										}, delayInMilliseconds);
+									setTimeout(() => {
+										 // code to be executed after 2 second
+										pass.innerHTML="驗證通過，您不是機器人<br>1秒後自動登入";
+										}, delayInMilliseconds+1000);
+									setTimeout(() => {
+									 // code to be executed after 3 second
+									document.querySelector('#sendData').click();
+									}, delayInMilliseconds+2000);
+								}
+							});
+						}
+					});			
+				});
+			});
+
+//			測試程序化登入google評分
+// 			for(i=0;i<10;i++){
+// 				document.querySelector('.captcha').click();
+// 			}
+
+		};
+	</script>
 </body>
 </html>

@@ -14,6 +14,7 @@ import tw.group4._03_.cms.calendar.model.ShopCalendarService;
 import tw.group4._03_.cms.reservation.model.ShopReservationBean;
 import tw.group4._03_.cms.reservation.model.ShopReservationService;
 import tw.group4._03_.cms.util.CustomizedTimeChange;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class CreateReservation {
@@ -26,22 +27,22 @@ public class CreateReservation {
 	
 	@RequestMapping(path = "/03/cms/reservation/createReservationDate.ctrl", method = RequestMethod.POST)
 	public String createReservationDate(
-//			@RequestParam(name="memberId") String memberId,
-//			@RequestParam(name="memberName") String memberName,
+			@RequestParam(name="memberId") String memberId,
+			@RequestParam(name="memberName") String memberName,
 			@RequestParam(name="shopId") String shopId,
 			@RequestParam(name="shopName") String shopName,
+			@RequestParam(name="intro") String intro,
 			Model m) {
 		try {
-//			m.addAttribute("memberId", memberId);
-//			m.addAttribute("memberName", memberName);
+			m.addAttribute("memberId", memberId);
+			m.addAttribute("memberName", memberName);
 			m.addAttribute("shopId", shopId);
 			m.addAttribute("shopName", shopName);
+			m.addAttribute("intro", intro);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return "03/cms_reservation/create_choose_date";
-
+		return IdentityFilter.loginID+"03/cms_reservation/create_choose_date";
 	}
 	
 	@RequestMapping(path = "/03/cms/reservation/createReservationConfirm.ctrl", method = RequestMethod.POST)
@@ -82,7 +83,7 @@ public class CreateReservation {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "03/cms_reservation/create_confirm";
+		return IdentityFilter.loginID+"03/cms_reservation/create_confirm";
 	}
 	
 	@RequestMapping(path = "/03/cms/reservation/createReservation.ctrl", method = RequestMethod.POST)
@@ -136,7 +137,7 @@ public class CreateReservation {
 			String reservationCreateMsg = "商店預約新增失敗，請重新輸入";
 			m.addAttribute("reservationCreateMsg", reservationCreateMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_reservation/create_return";
+		return IdentityFilter.loginID+"03/cms_reservation/create_return";
 	}
 
 }

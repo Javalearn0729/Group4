@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.group4._03_.cms.calendar.model.ShopCalendarBean;
 import tw.group4._03_.cms.calendar.model.ShopCalendarService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class UpdateCalendar {
@@ -41,7 +42,7 @@ public class UpdateCalendar {
 			m.addAttribute("calendarUpdateMsg", calendarUpdateMsg); // 回傳錯誤訊息
 		}
 
-		return "03/cms_calendar/update_confirm";
+		return IdentityFilter.loginID+"03/cms_calendar/update_confirm";
 	}
 
 	@RequestMapping(path = "/03/cms/calendar/updateCalendar.ctrl", method = RequestMethod.POST)
@@ -78,7 +79,7 @@ public class UpdateCalendar {
 			String calendarUpdateMsg = "預約行事曆更新失敗，請重試";
 			m.addAttribute("calendarUpdateMsg", calendarUpdateMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_calendar/update_return";
+		return IdentityFilter.loginID+"03/cms_calendar/update_return";
 	}
 
 }

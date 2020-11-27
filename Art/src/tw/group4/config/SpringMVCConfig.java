@@ -2,6 +2,7 @@ package tw.group4.config;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 //import java.util.Properties;
 //
@@ -12,8 +13,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.web.accept.ContentNegotiationManager;
+import org.springframework.web.client.RestTemplate;
 //import org.springframework.context.annotation.PropertySource;
 //import org.springframework.core.env.Environment;
 //import org.springframework.jndi.JndiObjectFactoryBean;
@@ -35,7 +39,6 @@ import tw.group4.config.viewResolver.ExcelViewResolver;
 import tw.group4.config.viewResolver.Jaxb2MarshallingXmlViewResolver;
 import tw.group4.config.viewResolver.JsonViewResolver;
 import tw.group4.config.viewResolver.PdfViewResolver;
-import tw.group4.model.HouseBean;
 
 //這個class設定SpringWebMVC和靜態資源對應網址還有視圖
 @Configuration
@@ -111,7 +114,9 @@ public class SpringMVCConfig implements WebMvcConfigurer {
     	registry.addResourceHandler("/vendor/**")
     			.addResourceLocations("/WEB-INF/pages/backstyle/vendor/");
     	registry.addResourceHandler("/js/**")
-    	.addResourceLocations("/WEB-INF/pages/backstyle/js/");
+    			.addResourceLocations("/WEB-INF/pages/backstyle/js/");
+    	registry.addResourceHandler("/frontstyle/**")
+    			.addResourceLocations("/WEB-INF/pages/frontstyle/");
   }
     
 //  設定multipartResolver(傳輸多媒體檔案用)預設編碼UTF-8
@@ -160,8 +165,8 @@ public class SpringMVCConfig implements WebMvcConfigurer {
 //  設定ContentNegotiationManager，稍後設定ContentNegotiatingViewResolver會用到
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-		configurer.ignoreAcceptHeader(true).defaultContentType(
-				MediaType.TEXT_HTML);
+//		configurer.ignoreAcceptHeader(true).defaultContentType(
+//				MediaType.TEXT_HTML);
 	}
 
 //	設定ContentNegotiatingViewResolver，初步設定把檔案輸出格式對應的畫面
@@ -192,7 +197,7 @@ public class SpringMVCConfig implements WebMvcConfigurer {
 	@Bean
 	public ViewResolver jaxb2MarshallingXmlViewResolver() {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-		marshaller.setClassesToBeBound(HouseBean.class);
+//		marshaller.setClassesToBeBound(HouseBean.class);
 		return new Jaxb2MarshallingXmlViewResolver(marshaller);
 	}
 
@@ -221,6 +226,31 @@ public class SpringMVCConfig implements WebMvcConfigurer {
 	@Bean
 	public ViewResolver excelViewResolver() {
 		return new ExcelViewResolver();
+	}
+	
+//	為了驗證碼controller設定RestTemplate
+	@Bean
+	public RestTemplate restTemplate() {
+	    return new RestTemplate();
+	}
+	
+//	SpringMail
+	@Bean
+	public JavaMailSender getJavaMailSender() {
+	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+	    mailSender.setHost("smtp.gmail.com");
+	    mailSender.setPort(587);
+	    
+	    mailSender.setUsername("u9913036@gms.ndhu.edu.tw");
+	    mailSender.setPassword("benny19930812");
+	    
+	    Properties props = mailSender.getJavaMailProperties();
+	    props.put("mail.transport.protocol", "smtp");
+	    props.put("mail.smtp.auth", "true");
+	    props.put("mail.smtp.starttls.enable", "true");
+	    props.put("mail.debug", "true");
+	    
+	    return mailSender;
 	}
 	
 }

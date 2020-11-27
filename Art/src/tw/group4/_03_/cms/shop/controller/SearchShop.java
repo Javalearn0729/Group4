@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.group4._03_.cms.shop.model.CreativeShopBean;
 import tw.group4._03_.cms.shop.model.CreativeShopService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class SearchShop {
@@ -36,7 +37,7 @@ public class SearchShop {
 			String acShopsSerachMsg = "商店資料搜尋失敗";
 			m.addAttribute("acShopsSerachMsg", acShopsSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_shop/search_return";
+		return IdentityFilter.loginID+"03/cms_shop/search_return";
 	}
 
 //	@RequestMapping(path = "/03/cms/shop/searchShopByShopId.ctrl", method = RequestMethod.POST)

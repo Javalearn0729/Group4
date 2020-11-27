@@ -6,6 +6,7 @@
 	<div class=title>
 		<h3 align="center" style="margin-top: 20px;">新增商店預約</h3>
 	</div>
+	<br>
 	<div class="back" align="right">
 		<form action="<c:url value='/03/cms/reservation/index'/> " method="get">
 			<div class="submitButton">
@@ -21,7 +22,7 @@
 				class="display table table-bordered table-hover table-blue">
 				<thead>
 					<tr>
-						<th>藝文商店搜尋</th>
+						<th>搜尋可預約藝文商店</th>
 				</thead>
 				<tbody>
 					<tr>
@@ -38,12 +39,12 @@
 				class="display table table-bordered table-hover table-blue">
 				<thead>
 					<tr>
-						<th>所有可預約藝文商店</th>
+						<th>查詢所有可預約藝文商店</th>
 				</thead>
 				<tbody>
 					<tr>
 						<td>
-							<button name="searchButton" type="submit">所有藝文商店</button>
+							<button name="searchButton" type="submit">查詢</button>
 						</td>
 						<td></td>
 					</tr>

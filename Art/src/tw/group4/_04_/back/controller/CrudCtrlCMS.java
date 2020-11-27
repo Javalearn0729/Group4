@@ -28,7 +28,9 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import tw.group4._04_.back.model.ShowBean;
+import tw.group4._04_.back.model.ShowBean2;
 import tw.group4._04_.back.model.ShowBeanService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class CrudCtrlCMS {
@@ -36,7 +38,10 @@ public class CrudCtrlCMS {
 	// 標註@Autowired，注入dependency
 	@Autowired
 	private ShowBean showBean;
-
+	
+	@Autowired
+	private ShowBean2 showBean2;
+	
 	@Autowired
 	private ShowBeanService showBeanService;
 
@@ -45,7 +50,7 @@ public class CrudCtrlCMS {
 	// Model 類似request的功能
 	// @SessionAttributes(names = {"name"})可以將參數設為session
 	// Action導到的名稱
-
+	//模糊查詢
 	@RequestMapping(path = "/04/CMS/SearchAll.ctrl", method = RequestMethod.GET)
 	public String processSearchAll(String searchString, String page, Model model) {
 
@@ -53,8 +58,8 @@ public class CrudCtrlCMS {
 		List<Map> list = new ArrayList<Map>();
 //		不用再new ShowBeanService因為已經用@Autowired  private ShowBeanService showBeanService依賴注入
 //		ShowBeanService showService = new ShowBeanService();
-		List<ShowBean> showList = showBeanService.find(searchString);
-		for (ShowBean showBean : showList) {
+		List<ShowBean2> showList = showBeanService.find(searchString);
+		for (ShowBean2 showBean : showList) {
 //			String category = Integer.toString(showBean.getACT_CATEGORY());
 
 			int noint = showBean.getACT_NO();
@@ -107,9 +112,9 @@ public class CrudCtrlCMS {
 		int listsize = list.size();
 		System.out.println("共" + listsize + "筆資料");
 
-		return "04_SearchAll";
+		return IdentityFilter.loginID+"04/cms_Act/SearchAll";
 	}
-
+	//分類查詢
 	@RequestMapping(path = "/04/CMS/Category.ctrl", method = RequestMethod.GET)
 	public String processCategorySearch(String category, String page, Model model) {
 
@@ -118,9 +123,9 @@ public class CrudCtrlCMS {
 
 		List<Map> list = new ArrayList<Map>();
 
-		List<ShowBean> showList = showBeanService.selectAll();
+		List<ShowBean2> showList = showBeanService.selectAll();
 
-		for (ShowBean showBean : showList) {
+		for (ShowBean2 showBean : showList) {
 			String categoryString = Integer.toString(showBean.getACT_CATEGORY());
 //			System.out.println(categoryString);
 			int noint = showBean.getACT_NO();
@@ -175,7 +180,7 @@ public class CrudCtrlCMS {
 		int listsize = list.size();
 		System.out.println("共" + listsize + "筆資料");
 
-		return "04_categorySearch";
+		return IdentityFilter.loginID+"04/cms_Act/categorySearch";
 	}
 
 	@RequestMapping(path = "/04/CMS/Delete.ctrl", method = RequestMethod.GET)
@@ -237,7 +242,7 @@ public class CrudCtrlCMS {
 		model.addAttribute("page", page);
 		model.addAttribute("searchString", searchString);
 
-		return "04_Update";
+		return IdentityFilter.loginID+"04/cms_Act/UpdateAction";
 	}
 
 	@RequestMapping(path = "/04/CMS/Update2.ctrl", method = RequestMethod.GET)
@@ -256,7 +261,7 @@ public class CrudCtrlCMS {
 	@RequestMapping(path = "/04/CMS/insert", method = RequestMethod.GET)
 	public String processUpdate2() {
 
-		return "04_Insert";
+		return IdentityFilter.loginID+"04/cms_Act/InsertAction";
 	}
 
 	@RequestMapping(path = "/04/CMS/Insert.ctrl", method = RequestMethod.GET)
@@ -338,7 +343,7 @@ public class CrudCtrlCMS {
 		int listsize = list.size();
 		System.out.println("共" + listsize + "筆資料");
 
-		return "04/index2";
+		return IdentityFilter.loginID+"04/cms_Act/index2";
 	}
 
 }

@@ -7,6 +7,7 @@
 	<div class=title>
 		<h3 align="center" style="margin-top: 20px;">藝文商店詳細資訊</h3>
 	</div>
+	<br>
 	<div class="back" align="right">
 		<form action="<c:url value='/03/cms/shop/index.ctrl'/> " method="post">
 			<div class="submitButton">

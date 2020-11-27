@@ -15,6 +15,7 @@ import tw.group4._03_.cms.calendar.model.ShopCalendarBean;
 import tw.group4._03_.cms.calendar.model.ShopCalendarService;
 import tw.group4._03_.cms.shop.model.CreativeShopBean;
 import tw.group4._03_.cms.shop.model.CreativeShopService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class RedirectCalendarController {
@@ -38,7 +39,7 @@ public class RedirectCalendarController {
 			String acShopsSerachMsg = "搜尋出錯，請嘗試重新載入";
 			m.addAttribute("acShopsSerachMsg", acShopsSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_calendar/index";
+		return IdentityFilter.loginID+"03/cms_calendar/index";
 	}
 
 	@RequestMapping(path = "/03/cms/calendar/calendarManagement.ctrl", method = RequestMethod.POST)
@@ -55,7 +56,7 @@ public class RedirectCalendarController {
 			String acShopsSerachMsg = "搜尋出錯，請嘗試重新載入";
 			m.addAttribute("acShopsSerachMsg", acShopsSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_calendar/calendar_management.jsp";
+		return IdentityFilter.loginID+"03/cms_calendar/calendar_management";
 	}
 
 	@PostMapping(value = "/03/cms/calendar/searchByYearMonth.json", produces = { "application/json; charset=UTF-8" })

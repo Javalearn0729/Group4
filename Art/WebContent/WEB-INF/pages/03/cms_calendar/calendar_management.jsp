@@ -5,7 +5,7 @@
 <div class="container">
 	<br>
 	<div class=title>
-		<h3 align="center" style="margin-top: 20px;">預約行事曆管理</h3>
+		<h3 align="center" style="margin-top: 20px;">行事曆管理</h3>
 	</div>
 	<div class="back" align="right">
 		<form action="<c:url value='/03/cms/calendar/index.ctrl'/> "
@@ -62,7 +62,7 @@
 						</select></td>
 						<td>請選擇月份:</td>
 						<td><select id="month" name="month" required="required">
-								<option selected value="01">1月</option>
+								<option value="01">1月</option>
 								<option value="02">2月</option>
 								<option value="03">3月</option>
 								<option value="04">4月</option>
@@ -73,7 +73,7 @@
 								<option value="09">9月</option>
 								<option value="10">10月</option>
 								<option value="11">11月</option>
-								<option value="12">12月</option>
+								<option selected value="12">12月</option>
 						</select></td>
 						<td><input type="hidden" id="shopId" name="shopId"
 							value="${shop.shopId}"></td>

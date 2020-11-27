@@ -5,7 +5,7 @@
 <div class="container">
 	<br>
 	<div class=title>
-		<h3 align="center" style="margin-top: 20px;">預約行事曆管理</h3>
+		<h3 align="center" style="margin-top: 20px;">行事曆管理</h3>
 	</div>
 	<div class="back" align="right">
 		<form action="<c:url value='/03/cms/calendar/index.ctrl'/> " method="post">

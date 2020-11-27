@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.group4._03_.cms.reservation.model.ShopReservationBean;
 import tw.group4._03_.cms.reservation.model.ShopReservationService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class UpdateReservation {
@@ -59,7 +60,7 @@ public class UpdateReservation {
 			String reservationUpdateMsg = "商店預約修改失敗，請重新輸入";
 			m.addAttribute("reservationUpdateMsg", reservationUpdateMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_reservation/update_return";
+		return IdentityFilter.loginID+"03/cms_reservation/update_return";
 	}
 
 	@RequestMapping(path = "/03/cms/reservation/updateReservationByNo.ctrl", method = RequestMethod.POST)
@@ -82,7 +83,7 @@ public class UpdateReservation {
 			String reservationSerachMsg = "搜尋出錯，請重新查詢";
 			m.addAttribute("reservationSerachMsg", reservationSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_reservation/update_confirm";
+		return IdentityFilter.loginID+"03/cms_reservation/update_confirm";
 
 	}
 
@@ -106,7 +107,7 @@ public class UpdateReservation {
 			String reservationSerachMsg = "搜尋出錯，請重新查詢";
 			m.addAttribute("reservationSerachMsg", reservationSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_reservation/update_by_name";
+		return IdentityFilter.loginID+"03/cms_reservation/update_by_name";
 
 	}
 
@@ -128,7 +129,7 @@ public class UpdateReservation {
 			String reservationSerachMsg = "搜尋出錯，請重新查詢";
 			m.addAttribute("reservationSerachMsg", reservationSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_reservation/update_by_name";
+		return IdentityFilter.loginID+"03/cms_reservation/update_by_name";
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import tw.group4._03_.cms.calendar.model.ShopCalendarService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class DeleteCalendar {
@@ -34,7 +35,7 @@ public class DeleteCalendar {
 			String calendarDeleteMsg = "行事曆刪除失敗";
 			m.addAttribute("calendarDeleteMsg", calendarDeleteMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_calendar/delete_return";
+		return IdentityFilter.loginID+"03/cms_calendar/delete_return";
 	}
 
 }

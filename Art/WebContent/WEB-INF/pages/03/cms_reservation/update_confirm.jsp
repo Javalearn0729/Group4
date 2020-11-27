@@ -110,9 +110,9 @@
 							</tr>
 							<tr>
 								<td>附註</td>
-								<td><textarea placeholder="請輸入附註內容" name="note"
+								<td><textarea placeholder="請輸入附註內容(可不填)" name="note"
 										style="width: 450px; height: 70px;" required="required">${reservationList.note}</textarea></td>
-								<td style="width: 200px;">*非必填</td>
+								<td style="width: 200px;"></td>
 							</tr>
 						</c:forEach>
 					</c:if>
@@ -120,7 +120,7 @@
 			</table>
 			<br>
 			<div class="submitButton" align="center" style="font-size: larger">
-				<input type="submit" name="submit" value="資料送出">
+				<input type="submit" name="submit" value="修改">
 			</div>
 			<br>
 		</form>

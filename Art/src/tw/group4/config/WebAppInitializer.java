@@ -37,15 +37,16 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 	
 //	設定request response編碼的Filter
 //	設定form method="post"轉"put"和"delete"的Filter
-//	此寫法當web.xml和java config同時設定，會失去作用，要用方法二filter
+//	設定request response編碼的Filter當web.xml和java config同時設定，會失去作用，要用註冊filter方法設定
+//	目前不明原因失效，先註解掉
 	@Override
 	protected Filter[] getServletFilters() {
-		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-		encodingFilter.setEncoding("UTF-8");
-		encodingFilter.setForceEncoding(true);
+//		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+//		encodingFilter.setEncoding("UTF-8");
+//		encodingFilter.setForceEncoding(true);
 	    HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
 		
-		return new Filter[] {encodingFilter, hiddenHttpMethodFilter};
+		return new Filter[] {hiddenHttpMethodFilter};
 	}
 	
 	@Override
@@ -67,11 +68,11 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		
 //		編碼過濾器註冊
 //		這是設定request編碼的方法二filter，設定context啟動時做什麼事
-//		如果SpringWebMvc設定與xml衝突時會導致前面方法定義的過濾器失效，要啟用這個過濾器代替
-//		FilterRegistration.Dynamic encodingFilterRegistration = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
-//		encodingFilterRegistration.setInitParameter("encoding", "UTF-8");
-//		encodingFilterRegistration.setInitParameter("forceEncoding", "true");
-//		encodingFilterRegistration.addMappingForUrlPatterns(null, false, "/*");
+//		如果前面方法定義的過濾器因不明原因失效，要啟用這個過濾器代替
+		FilterRegistration.Dynamic encodingFilterRegistration = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
+		encodingFilterRegistration.setInitParameter("encoding", "UTF-8");
+		encodingFilterRegistration.setInitParameter("forceEncoding", "true");
+		encodingFilterRegistration.addMappingForUrlPatterns(null, false, "/*");
 
 		servletContext.addListener(new ContextLoaderListener(rootContext));
 	}

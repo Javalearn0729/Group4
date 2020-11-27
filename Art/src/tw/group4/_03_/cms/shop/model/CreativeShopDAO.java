@@ -76,6 +76,13 @@ public class CreativeShopDAO {
 		List<CreativeShopBean> list = query.list();
 		return list;
 	}
+	public List<CreativeShopBean> selectByShopNameAndMemberId(String shopName, int memberId) {
+		Session session = sessionFacory.getCurrentSession();
+		Query<CreativeShopBean> query = session.createQuery("From CreativeShopBean where shopName like '%" + shopName + "%' and memberId = " + memberId + " ",
+				CreativeShopBean.class);
+		List<CreativeShopBean> list = query.list();
+		return list;
+	}
 
 	public List<CreativeShopBean> selectAll() {
 		Session session = sessionFacory.getCurrentSession();
@@ -92,9 +99,27 @@ public class CreativeShopDAO {
 		return list;
 	}
 	
+	// 10 ==========================
+	
+	public List<CreativeShopBean> selectByMemberIdAndReservation(int memberId) {
+		Session session = sessionFacory.getCurrentSession();
+		Query<CreativeShopBean> query = session.createQuery("From CreativeShopBean where memberId = " + memberId + " and reservation = 1",
+				CreativeShopBean.class);
+		List<CreativeShopBean> list = query.list();
+		return list;
+	}
+	
 	public List<CreativeShopBean> selectByShopNameAndReservation(String shopName) {
 		Session session = sessionFacory.getCurrentSession();
 		Query<CreativeShopBean> query = session.createQuery("From CreativeShopBean where shopName like '%" + shopName + "%' and reservation = 1",
+				CreativeShopBean.class);
+		List<CreativeShopBean> list = query.list();
+		return list;
+	}
+	
+	public List<CreativeShopBean> selectByShopNameAndMemberIdAndReservation(String shopName, int memberId) {
+		Session session = sessionFacory.getCurrentSession();
+		Query<CreativeShopBean> query = session.createQuery("From CreativeShopBean where shopName like '%" + shopName + "%'and memberId = " + memberId + " and reservation = 1",
 				CreativeShopBean.class);
 		List<CreativeShopBean> list = query.list();
 		return list;
@@ -128,8 +153,6 @@ public class CreativeShopDAO {
 		return result;
 	}
 
-	// 10 ==========================
-	
 	public boolean delete(int shopId) {
 		Session session = sessionFacory.getCurrentSession();
 		CreativeShopBean result = session.get(CreativeShopBean.class, shopId);
@@ -141,4 +164,6 @@ public class CreativeShopDAO {
 		return false;
 	}
 
+	// 15 ==========================
+	
 }

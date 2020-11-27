@@ -20,14 +20,20 @@ public interface ICreativeShopService {
 
 	public List<CreativeShopBean> selectByMemberId(int memberId);
 
+	public List<CreativeShopBean> selectByShopNameAndMemberId(String shopName, int memberId);
+	
 	public List<CreativeShopBean> selectAll();
 
 	public List<CreativeShopBean> selectByReservation();
 	
-	public List<CreativeShopBean> selectByShopNameAndReservation(String shopName);
-	
 	// 10 ==========================
 	
+	public List<CreativeShopBean> selectByMemberIdAndReservation(int memberId);
+	
+	public List<CreativeShopBean> selectByShopNameAndReservation(String shopName);
+	
+	public List<CreativeShopBean> selectByShopNameAndMemberIdAndReservation(String shopName, int memberId);
+		
 	public CreativeShopBean update( 
 			int shopId, String shopName, int memberId, String image, String intro, 
 			String cityName, String address, String openTime, String phone, String fax, 

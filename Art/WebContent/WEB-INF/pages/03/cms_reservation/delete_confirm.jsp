@@ -22,42 +22,62 @@
 			<thead></thead>
 			<tbody>
 				<tr class="head">
-					<th scope="col">預約編號</th>
-					<th scope="col">會員帳號</th>
-					<th scope="col">會員姓名</th>
-					<th scope="col">預約日期</th>
-					<th scope="col">商店名稱</th>
-					<!-- ===================== -->
-					<th scope="col">顧客姓名</th>
-					<th scope="col">人數</th>
-					<th scope="col">刪除</th>
 				</tr>
 				<c:if test="${reservationList != null}">
 					<c:forEach items="${reservationList}" var="reservationList"
 						varStatus="vs">
 						<tr>
+							<td>預約編號:</td>
 							<td>${reservationList.reservationNo}</td>
+						</tr>
+						<tr>
+							<td>會員帳號:</td>
 							<td>${reservationList.memberId}</td>
+						</tr>
+						<tr>
+							<td>會員姓名:</td>
 							<td>${reservationList.memberName}</td>
+						</tr>
+						<tr>
+							<td>預約日期</td>
 							<td>${reservationList.dateTime}</td>
+						</tr>
+						<tr>
+							<td>商店名稱:</td>
 							<td>${reservationList.shopName}</td>
-							<!-- ======================= -->
+						</tr>
+						<!-- ======================= -->
+						<tr>
+							<td>預約人姓名:</td>
 							<td>${reservationList.customerName}</td>
+						</tr>
+						<tr>
+							<td>預約人電話:</td>
+							<td>${reservationList.customerPhone}</td>
+						</tr>
+						<tr>
+							<td>人數:</td>
 							<td>${reservationList.amount}</td>
-							<td>
-								<form method="post"
-									action="<c:url value="/03/cms/reservation/deleteReservation.ctrl"/>">
-									<button name="deleteButton" type="submit"
-										value="${reservationList.reservationNo}">刪除</button>
-									<Input type="hidden" name="reservationNo"
-										value="${reservationList.reservationNo}">
-								</form>
-							</td>
+						</tr>
+						<tr>
+							<td>附註:</td>
+							<td><textarea placeholder="請輸入附註內容" name="note"
+									style="width: 450px; height: 70px;" required="required">${reservationList.note}</textarea></td>
 						</tr>
 					</c:forEach>
 				</c:if>
 			</tbody>
 		</table>
+		<br>
+		<div class="submitButton" align="center" style="font-size: larger">
+			<form method="post"
+				action="<c:url value="/03/cms/reservation/deleteReservation.ctrl"/>">
+				<button name="deleteButton" type="submit"
+					value="${reservationList.reservationNo}">刪除預約</button>
+				<Input type="hidden" name="reservationNo"
+					value="${reservationList.reservationNo}">
+			</form>
+		</div>
 		<br>
 		<c:if test="${reservationSerachMsg != null}">
 			<div align="center" style="font-size: larger">${reservationSerachMsg}</div>

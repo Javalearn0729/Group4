@@ -5,7 +5,7 @@
 <div class="container">
 	<br>
 	<div class=title>
-		<h3 align="center" style="margin-top: 20px;">建立預約行事曆</h3>
+		<h3 align="center" style="margin-top: 20px;">建立行事曆</h3>
 	</div>
 	<div class="back" align="right">
 		<form action="<c:url value='/03/cms/calendar/index.ctrl'/> " method="post">
@@ -82,7 +82,7 @@
 								value="18:00" max="24:00" required></td>
 
 							<td><textarea placeholder="備註內容最多150字，可不填寫" name="note"
-									maxlength="150" style="width: 400px; height: 70px;">A</textarea></td>
+									maxlength="150" style="width: 400px; height: 70px;"> </textarea></td>
 
 							<td><input type="hidden" name="dateTime"
 								value="${year}-${month}-${dayList}"></td>
@@ -93,7 +93,7 @@
 			<!-- ====================================================== -->
 			<br>
 			<div class="submitButton" align="center" style="font-size: larger">
-				<input type="submit" name="submit" value="資料送出">
+				<input type="submit" name="submit" value="建立行事曆">
 			</div>
 			<br>
 		</form>

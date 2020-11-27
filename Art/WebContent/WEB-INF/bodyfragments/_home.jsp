@@ -1,5 +1,5 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<div style="padding:7% 8% 15% 8%;">
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -28,4 +28,5 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+</div>
 </div>

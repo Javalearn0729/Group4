@@ -5,7 +5,7 @@
 <div class="container">
 	<br>
 	<div class=title>
-		<h3 align="center" style="margin-top: 20px;">預約行事曆管理</h3>
+		<h3 align="center" style="margin-top: 20px;">行事曆管理</h3>
 	</div>
 	<div class="back" align="right">
 		<form action="<c:url value='/index.html'/> " method="get">
@@ -19,7 +19,7 @@
 		<form method="post"
 			action="<c:url value="/03/cms/calendar/searchShopByShopNameAndReservation.ctrl"/>">
 			<div class="submitButton">
-				商店名稱查詢: <input type="text" placeholder="請輸入藝文商店名稱 " name="shopName"><input
+				商店搜尋: <input type="text" placeholder="請輸入藝文商店名稱 " name="shopName"><input
 					type="submit" name="submit" value="查詢">
 			</div>
 			<br>

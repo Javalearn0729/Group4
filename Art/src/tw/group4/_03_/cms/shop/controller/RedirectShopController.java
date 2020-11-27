@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.group4._03_.cms.shop.model.CreativeShopBean;
 import tw.group4._03_.cms.shop.model.CreativeShopService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class RedirectShopController {
@@ -30,7 +31,7 @@ public class RedirectShopController {
 			String acShopsSerachMsg = "搜尋出錯，請嘗試重新載入";
 			m.addAttribute("acShopsSerachMsg", acShopsSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_shop/index";
+		return IdentityFilter.loginID+"03/cms_shop/index";
 	}
 
 	@RequestMapping(path = "/03/cms/shop/shopDetails.ctrl", method = RequestMethod.POST)
@@ -56,7 +57,7 @@ public class RedirectShopController {
 			String acShopsSerachMsg = "搜尋出錯，請重新查詢";
 			m.addAttribute("acShopsSerachMsg", acShopsSerachMsg); // 回傳錯誤訊息
 		}
-		return "03/cms_shop/shop_details";
+		return IdentityFilter.loginID+"03/cms_shop/shop_details";
 	}
 	
 }

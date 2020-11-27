@@ -24,8 +24,8 @@ function reconfirmOrder(pid,page){
 	swal("提示","確認刪除？", "warning",{
 	    buttons: {
 	      danger: {
-	          text: "是",
-	          visible: true
+	          text: "是"
+// 	          ,visible: true
 	        },
 	      "不是": true,
 //	      "是": true
@@ -36,7 +36,7 @@ function reconfirmOrder(pid,page){
 	    switch (value) {
 	      case "danger":
 	    	swal("提示","商品已刪除", "success")
-	    	setTimeout(function(){window.location="<c:url value='/14/deleteProduct.ctrl?productid="+pid+"&pageNo="+page+"' />" ; },2000);
+	    	setTimeout(function(){window.location="<c:url value='/14/deleteProduct.ctrl?productId="+pid+"'/>" ; },2000);
 	        break;
 	      case "不是":
 	        swal("提示","商品未刪除", "info");
@@ -91,15 +91,15 @@ function reconfirmOrder(pid,page){
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
 
-			<!-- Page Heading -->
-			<!-- 			<h1 class="h3 mb-2 text-gray-800">商品編輯頁面</h1> -->
+			Page Heading
+			<h1 class="h3 mb-2 text-gray-800">商品編輯頁面</h1>
 			<p class="mb-4">
 				本處預計使用 DataTables 生成下表，等到學完 AJAX 之後應可以自動使用此插件進行排序與頁碼和每頁顯示筆數等功能。<br>
 				若想先學習如何使用，請訪問 <a target="_blank" href="https://datatables.net">official
 					DataTables documentation</a>.
 			</p>
 
-			<!-- DataTales -->
+			DataTales
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
 					<h6 class="m-0 font-weight-bold text-primary">得意洋行商品一覽</h6>
@@ -128,67 +128,67 @@ function reconfirmOrder(pid,page){
 								</tr>
 							</tfoot>
 
-									<tbody>
-							<c:forEach var="searchAP" varStatus="stat" items="${pList}">
-								<FORM>
-										<tr>
+							<tbody>
+								<c:forEach var="searchAP" varStatus="stat" items="${pList}">
+									<!--<FORM> -->
+									<tr>
 
-											<td class="align-middle" scope="row"
-												style="text-align: center;">${searchAP.productId}</td>
-											<td class="align-middle">${searchAP.productTitle}</td>
-											<td class="align-middle" style="text-align: center;">${searchAP.productPrice}</td>
-											<td class="align-middle" style="text-align: center;">${searchAP.productNum}</td>
-											<td class="align-middle"><button type="button"
-													class="btn btn-info btn-sm" value="全部商品"
-													onclick="location.href='<c:url value='/14/updateProduct.ctrl?productid=${searchAP.productId}' />'">修改</button>
-												<Input class="btn btn-info btn-sm" type="button"
-												name="delete" value="刪除"
-												onclick="reconfirmOrder(${searchAP.productId},${pageNo})">
-												<button type="button" class="btn btn-info btn-sm" value="詳情"
-													onclick="location.href='<c:url value='/14/showOneProduct.ctrl?productid=${searchAP.productId}' />'">詳情</button>
-											</td>
+										<td class="align-middle" scope="row"
+											style="text-align: center;">${searchAP.productId}</td>
+										<td class="align-middle">${searchAP.productTitle}</td>
+										<td class="align-middle" style="text-align: center;">${searchAP.productPrice}</td>
+										<td class="align-middle" style="text-align: center;">${searchAP.productNum}</td>
+										<td class="align-middle"><button type="button"
+												class="btn btn-info btn-sm" value="全部商品"
+												onclick="location.href='<c:url value='/14/updateProduct.ctrl?productid=${searchAP.productId}' />'">修改</button>
+											<Input class="btn btn-info btn-sm" type="button"
+											name="delete" value="刪除"
+											onclick="reconfirmOrder(${searchAP.productId},${pageNo})">
+											<button type="button" class="btn btn-info btn-sm" value="詳情"
+												onclick="location.href='<c:url value='/14/showOneProductCMS.ctrl?productid=${searchAP.productId}' />'">詳情</button>
+										</td>
 
-										</tr>
-								</FORM>
-							</c:forEach>
-									</tbody>
+									</tr>
+									<!--</FORM> -->
+								</c:forEach>
+							</tbody>
 
 						</table>
 					</div>
 
-<%-- 					<div style="text-align: center;">第 ${pageNo} 頁 // --%>
-<%-- 						共${totalPages} 頁</div> --%>
-<!-- 					<div class="container"> -->
-<!-- 						<div class="row justify-content-md-center"> -->
+					<%-- 					<div style="text-align: center;">第 ${pageNo} 頁 // --%>
+					<%-- 						共${totalPages} 頁</div> --%>
+					<!-- 					<div class="container"> -->
+					<!-- 						<div class="row justify-content-md-center"> -->
 
 
 
-<!-- 							<nav aria-label="Page navigation example" style="margin: auto;"> -->
-<!-- 								<ul class="pagination" style="margin: auto;"> -->
-<%-- 									<li class="page-item" style="margin: auto;"><c:if --%>
-<%-- 											test="${pageNo > 1}"> --%>
-<!-- 											<a class="page-link" -->
-<%-- 												href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo-1}' />" --%>
-<!-- 												aria-label="Previous"> <span aria-hidden="true">&laquo;</span> -->
-<!-- 											</a> -->
-<%-- 										</c:if></li> --%>
-<%-- 									<c:forEach var='page' items='${pages}'> --%>
-<!-- 										<li class="page-item"><a class="page-link" -->
-<%-- 											href="<c:url value='/14/CRUD.ctrl?pageNo=${page}' />">${page}</a></li> --%>
-<%-- 									</c:forEach> --%>
-<%-- 									<c:if test="${pageNo != totalPages}"> --%>
-<!-- 										<li class="page-item"><a class="page-link" -->
-<%-- 											href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo+1}' />" --%>
-<!-- 											aria-label="Next"> <span aria-hidden="true">&raquo;</span> -->
-<!-- 										</a></li> -->
-<%-- 									</c:if> --%>
-<!-- 								</ul> -->
-<!-- 							</nav> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
+					<!-- 							<nav aria-label="Page navigation example" style="margin: auto;"> -->
+					<!-- 								<ul class="pagination" style="margin: auto;"> -->
+					<%-- 									<li class="page-item" style="margin: auto;"><c:if --%>
+					<%-- 											test="${pageNo > 1}"> --%>
+					<!-- 											<a class="page-link" -->
+					<%-- 												href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo-1}' />" --%>
+					<!-- 												aria-label="Previous"> <span aria-hidden="true">&laquo;</span> -->
+					<!-- 											</a> -->
+					<%-- 										</c:if></li> --%>
+					<%-- 									<c:forEach var='page' items='${pages}'> --%>
+					<!-- 										<li class="page-item"><a class="page-link" -->
+					<%-- 											href="<c:url value='/14/CRUD.ctrl?pageNo=${page}' />">${page}</a></li> --%>
+					<%-- 									</c:forEach> --%>
+					<%-- 									<c:if test="${pageNo != totalPages}"> --%>
+					<!-- 										<li class="page-item"><a class="page-link" -->
+					<%-- 											href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo+1}' />" --%>
+					<!-- 											aria-label="Next"> <span aria-hidden="true">&raquo;</span> -->
+					<!-- 										</a></li> -->
+					<%-- 									</c:if> --%>
+					<!-- 								</ul> -->
+					<!-- 							</nav> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
 
-						
-<script>
+
+					<script>
 $(document).ready( function () {
     $('#dataTable').DataTable({
 

@@ -13,8 +13,6 @@ import com.lowagie.text.Element;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
-import tw.group4.model.HouseBean;
-
 public class PdfView extends AbstractPdfView {
 
 	@Override
@@ -22,7 +20,7 @@ public class PdfView extends AbstractPdfView {
 			Document document, PdfWriter writer, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		HouseBean hBean = (HouseBean) model.get("houseBean");
+//		HouseBean hBean = (HouseBean) model.get("houseBean");
 
 		PdfPTable table = new PdfPTable(2);
 		table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -32,8 +30,8 @@ public class PdfView extends AbstractPdfView {
 		table.addCell("ID");
 		table.addCell("NAME");
 
-		table.addCell(String.valueOf(hBean.getHouseid()));
-		table.addCell(hBean.getHousename());
+//		table.addCell(String.valueOf(hBean.getHouseid()));
+//		table.addCell(hBean.getHousename());
 
 		document.add(table);
 
